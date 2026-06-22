@@ -131,8 +131,44 @@ https://www.loom.com/share/f3fac33e856b42559c0f1a6311a87109
 ---
 
 ## Sample Outputs
+Sample Output Logs & Database Entries
+1. Sample Database Schema Layout
+User Document
+{
+  "_id": "60c72b2f9b1d8b2bad0a1234",
+  "email": "user@example.com",
+  "password": "$2a$10$hashedpasswordhere...",
+  "createdAt": "2026-06-14T09:00:00.000Z"
+}
+URL Document
+{
+  "_id": "60c72b2f9b1d8b2bad0a5678",
+  "originalUrl": "https://www.wikipedia.org",
+  "shortCode": "wiki-test",
+  "creator": "60c72b2f9b1d8b2bad0a1234",
+  "expiresAt": "2026-12-31T23:59:59.000Z",
+  "createdAt": "2026-06-14T09:05:00.000Z"
+}
+Analytics Document (Log)
+{
+  "_id": "60c72b2f9b1d8b2bad0a9012",
+  "urlId": "60c72b2f9b1d8b2bad0a5678",
+  "timestamp": "2026-06-14T09:08:18.000Z",
+  "ip": "127.0.0.1",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ... Chrome/120.0.0.0",
+  "browser": "Chrome",
+  "device": "Desktop"
+}
+2. Sample Server Logs
+Attempting database connection to mongodb://127.0.0.1:27017/url_shortener...
+MongoDB connected successfully to local instance.
+Backend server listening on port 5000
 
-Add screenshots, logs, analytics dashboard images, and database records here.
+POST /api/auth/signup - 201 Created
+POST /api/urls - 201 Created (Code: wiki-test)
+GET /r/wiki-test - 302 Found (IP: 127.0.0.1, Browser: Chrome, Device: Desktop)
+GET /api/urls/60c72b2f9b1d8b2bad0a5678/stats - 200 OK
+
 
 ---
 
